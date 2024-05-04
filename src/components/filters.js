@@ -6,6 +6,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Filters from "../assets/filtersData.json";
 import { TextField } from "@mui/material";
+import { useSelector } from "react-redux";
 
 export default function Filter() {
   const [role, setRole] = useState("");
