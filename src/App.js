@@ -56,7 +56,7 @@ function App() {
   return (
     <div className="App">
       <Filter></Filter>
-      <JobCards jobs={jobs}></JobCards>
+      <JobCards></JobCards>
       {fetchingMoreJobs && (
         <div className="flex jc-center">
           <CircularProgress sx={{ margin: 6 }} />

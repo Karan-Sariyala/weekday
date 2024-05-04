@@ -7,6 +7,7 @@ import { Avatar } from "@mui/material";
 import Modal from "@mui/material/Modal";
 import { useState } from "react";
 import Box from "@mui/material/Box";
+import { useSelector } from "react-redux";
 
 const style = {
   position: "absolute",
@@ -18,11 +19,12 @@ const style = {
   p: 4,
 };
 
-export default function JobCards({ jobs }) {
+export default function JobCards() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  const jobs = useSelector((state) => state.jobs.data);
+  
   if (!jobs || !jobs.jdList) {
     return <div>No jobs available</div>;
   }
@@ -61,7 +63,8 @@ export default function JobCards({ jobs }) {
                   gutterBottom
                 >
                   Estimated salary: {job.salaryCurrencyCode}
-                  {job.minJdSalary} - {job.maxJdSalary}
+                  <span> {job.minJdSalary ? job.minJdSalary : "NA"}</span> -
+                  <span> {job.maxJdSalary ? job.maxJdSalary : "NA"}</span>
                 </Typography>
                 <Typography>About company :</Typography>
                 <Typography sx={{ fontSize: 14, fontWeight: 600 }}>
@@ -79,7 +82,7 @@ export default function JobCards({ jobs }) {
                 >
                   Minimum experience
                 </Typography>
-                <Typography>{job.minExp} years</Typography>
+                <Typography>{job.minExp ? job.minExp : "NA"} years</Typography>
                 <div>
                   <Button
                     variant="text"
@@ -92,9 +95,10 @@ export default function JobCards({ jobs }) {
                     open={open}
                     onClose={handleClose}
                     style={{
-                      backdropFilter: "blur(3px)",
+                      backdropFilter: "blur(1px)",
                       backgroundColor: "transparent",
                     }}
+                    className="removeBgColor"
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                   >

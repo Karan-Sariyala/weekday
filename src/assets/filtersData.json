@@ -1,12 +1,12 @@
 {
   "roles": [
-    "Frontend",
-    "Backend",
-    "Fullstack",
-    "Ios",
-    "Flutter",
-    "React Native",
-    "Android"
+    "frontend",
+    "backend",
+    "fullstack",
+    "ios",
+    "flutter",
+    "react native",
+    "android"
   ],
   "noOfEmployees": [
     "1-10",

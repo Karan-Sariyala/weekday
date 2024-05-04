@@ -26,11 +26,15 @@ code {
 .filterSection {
   margin-top: 20px;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content:space-between;
   align-items: center;
+  flex-wrap: wrap;
+  padding: 0 50px;
+  gap: 5px;
 }
 .filterSection .filterWrapper {
-  min-width: 200px;
+  min-width: 250px;
   margin-right: 10px;
 }
 
@@ -82,4 +86,7 @@ code {
   &:hover {
     background-color: transparent;
   }
+}
+.removeBgColor .MuiModal-backdrop {
+  background-color: unset;
 }

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -14,6 +14,39 @@ export default function Filter() {
   const [experience, setExperience] = useState("");
   const [jobType, setJobType] = useState("");
   const [salary, setSalary] = useState("");
+
+  const jobs = useSelector((state) => state.jobs.data);
+
+  const filterJobs = () => {
+    // Apply filters to jobs
+    let filteredJobs = jobs?.jdList?.filter((job) => {
+      let matchesRole = true;
+      let matchesEmployees = true;
+      let matchesExperience = true;
+      let matchesJobType = true;
+      let matchesSalary = true;
+
+      if (role !== "") {
+        matchesRole = job.jobRole === role;
+      }
+
+      return (
+        matchesRole &&
+        matchesEmployees &&
+        matchesExperience &&
+        matchesJobType &&
+        matchesSalary
+      );
+    });
+
+    // Update UI with filtered jobs
+    console.log(filteredJobs);
+  };
+
+  // Call filter function when any filter changes
+  useEffect(() => {
+    filterJobs();
+  }, [role, noOfEmployees, experience, jobType, salary]);
 
   return (
     <section className="filterSection">
@@ -97,7 +130,7 @@ export default function Filter() {
           ))}
         </Select>
       </FormControl>
-      <FormControl>
+      <FormControl className="filterWrapper">
         <TextField
           id="outlined-basic"
           label="Company name"
